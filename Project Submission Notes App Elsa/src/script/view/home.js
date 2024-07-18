@@ -18,9 +18,9 @@ const months = {
 };
 
 const home = () => {
-  const addBox = document.querySelector(".add-box"),
+  const addBox = document.querySelector("notes-item").shadowRoot.querySelector('.add-box'),
     popupBox = document.querySelector(".popup-box"),
-    popupTitle = popupBox.querySelector("header p"),
+    popupTitle = popupBox.querySelector("notes-list").shadowRoot.querySelector('header p'),
     closeIcon = popupBox.querySelector("header i"),
     titleTag = popupBox.querySelector("input"),
     descriptionTag = popupBox.querySelector("textarea"),
