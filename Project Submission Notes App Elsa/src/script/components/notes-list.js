@@ -1,3 +1,5 @@
+import Utils from '../utils.js';
+
 class NotesList extends HTMLElement {
     _shadowRoot = null;
     _style = null;
@@ -34,6 +36,8 @@ class NotesList extends HTMLElement {
 
     updateStyle() {
         this._style.textContent = `
+        @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+
         .popup-box {
         position: fixed;
         top: 0;
@@ -113,24 +117,55 @@ class NotesList extends HTMLElement {
         border: 1px solid #999;
         }
 
-.content form textarea {
-    height: 150px;
-    resize: none;
-    padding: 8px 15px;
-}
+        .content form textarea {
+        height: 150px;
+        resize: none;
+        padding: 8px 15px;
+        }
 
-.content form button {
-    width: 100%;
-    height: 50px;
-    border: none;
-    outline: none;
-    color: #ffff;
-    cursor: pointer;
-    font-size: 16px;
-    border-radius: 4px;
-    background: #7D8ABC;
+        .content form button {
+        width: 100%;
+        height: 50px;
+        border: none;
+        outline: none;
+        color: #ffff;
+        cursor: pointer;
+        font-size: 16px;
+        border-radius: 4px;
+        background: #7D8ABC;
 
-}
-`;
+        }
+        `;
+    }
+
+    render(){
+        this._updateStyle();
+
+        this._shadowRoot.appendChild(this._style);
+        this._shadowRoot.innerHTML += `
+        <div class="popup-box">
+                <div class="popup">
+                    <div class="content">
+                        <header>
+                            <p>Add a new Note</p>
+                            <i class="bi bi-calendar-x-fill"></i>
+                        </header>
+                    <form action="#">
+                        <div class="row-title">
+                            <label>Title</label>
+                            <input type="text">
+                        </div>
+                        <div class="row-description">
+                            <label>Description</label>
+                            <textarea></textarea>
+                        </div>
+                        <button>Add Note</button>
+                    </form>
+                </div>
+            </div>
+        
+        `;
     }
 }
+
+customElements.define('notes-list', NotesList);
